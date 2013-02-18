@@ -1,0 +1,108 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6"> <![endif]--> <!--[if IE 7 ]>    <html lang="en" class="ie7"> <![endif]--> <!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]--> <!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Monika 2</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./css/bootstrap.css" rel="stylesheet">
+  <link href="./css/bootstrap-responsive.css" rel="stylesheet">
+  <link href="./css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      padding-top: 60px;
+      padding-bottom: 40px;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <script type="text/x-handlebars" data-template-name='current-jobs'>
+    <div class="page-header">
+      <h1>
+        <i class="icon-play"></i> Current jobs <small>Running, Lauching, Finishing (<span id="nb-current-jobs-span">{{OAR.JobsController.length}} jobs</span>)</small>
+        <button class="btn pull-right" data-loading-text="loading current jobs..." id="current-jobs-refresh-btn"><i class="icon-refresh"></i> Refresh</button>
+      </h1>
+    </div>
+      <table class="table table-bordered table-condensed dataTable" id="current-jobs-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Owner</th>
+          <th>State</th>
+          <th>Name</th>
+          <th>Queue</th>
+          <th>Wanted Resources</th>
+          <th>Walltime</th>
+          <th>Start Time</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{#each OAR.JobsController}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{owner}}</td>
+          <td>
+          {{view OAR.JobProgressBar state=state valueBinding="progress"}}
+          </td>
+          <td>{{name}}</td>
+          <td>{{queue}}</td>
+          <td>{{wanted_resources}}</td>
+          <td>{{walltime}}</td>
+          <td>{{start_time}}</td>
+        </tr>
+      {{/each}}
+      </tbody>
+      </table>
+    </script>
+
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#"><i class="icon-th"></i> <span id='platform_name'>OAR Dashboard</span></a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="divider-vertical"></li>
+          <li class="active"><a href="">Jobs monitor</a></li>
+          <li><a href="./resources_view.html">Resources view</a></li>
+          <li><a href="">Users karma</a></li>
+        </ul>
+        <div class="pull-right"  style="width: 100px" id="rest-progress">
+          <div class="progress progress-info progress-striped active" style="margin: 9px; display: none;" >
+            <div class="bar" style="width: 100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <section id="status" style="display: none;">
+    <div class="page-header">
+      <h1>
+        <i class="icon-signal"></i> Status <small>Resources usage</small>
+      </h1>
+    </div>
+  </section>
+
+  <section id="current-jobs-section">
+  </section>
+
+</div>
+
+<script src="js/libs/bootstrap.js"></script>
+<script src="js/libs/bootstrap-button.js"></script>
+<script src="js/libs/jquery-1.9.1.js"></script>
+<script src="js/libs/handlebars.js"></script>
+<script src="js/libs/ember-1.0.0-rc.1.js"></script>
+<script src="js/oar.js"></script>
+</body>
+</html>
