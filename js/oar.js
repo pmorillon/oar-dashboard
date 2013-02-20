@@ -16,7 +16,7 @@ OAR.Job = Ember.Object.extend({
   wanted_resources: null,
   walltime: null,
   start_time: null,
-  bar_style : null
+  progress : null
 });
 
 // Views
@@ -29,7 +29,7 @@ OAR.JobProgressBar = Ember.View.extend({
   classNames: ['progress'],
   classNameBindings: ['isRunning:progress', 'isLorF:progress-striped active'],
   attributeBindings: ['style'],
-  style: "height: 12px;margin-bottom: 2px;margin-top: 2px;",
+  style: "height: 12px; width: 80px; margin-bottom: 2px;margin-top: 2px;",
   template: Ember.Handlebars.compile('<div class="bar" {{bindAttr style="view.barStyle"}}></div>'),
   state: null,
   isRunning: Ember.computed(function() {
@@ -68,7 +68,7 @@ OAR.JobsController = Ember.ArrayController.create({
             queue: value.queue,
             wanted_resources: value.wanted_resources,
             walltime: value.walltime,
-            start_time: value.start_time,
+            start_time: 0 ? "No prediction" : new Date(value.start_time * 1000),
             progress: (((+new Date) - (value.start_time * 1000)) / (value.walltime * 1000)) * 100
           });
           array_controller.pushObject(job);

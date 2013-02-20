@@ -40,7 +40,7 @@
       <tbody>
       {{#each OAR.JobsController}}
         <tr>
-          <td>{{id}}</td>
+          <td><span class="label label-info">{{id}}</span></td>
           <td>{{owner}}</td>
           <td>
           {{view OAR.JobProgressBar state=state valueBinding="progress"}}
@@ -54,7 +54,7 @@
       {{/each}}
       </tbody>
       </table>
-    </script>
+  </script>
 
 </head>
 <body>
@@ -72,7 +72,6 @@
           <li class="divider-vertical"></li>
           <li class="active"><a href="">Jobs monitor</a></li>
           <li><a href="./resources_view.html">Resources view</a></li>
-          <li><a href="">Users karma</a></li>
         </ul>
         <div class="pull-right"  style="width: 100px" id="rest-progress">
           <div class="progress progress-info progress-striped active" style="margin: 9px; display: none;" >
